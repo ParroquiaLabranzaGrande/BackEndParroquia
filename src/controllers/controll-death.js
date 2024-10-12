@@ -23,7 +23,7 @@ module.exports = {
       const deathDate = new Date(req.body.deathDate);
       const currentDate = new Date();
       if (deathDate > currentDate) {
-        return res.status(400).json({ message: "La fecha de defunción no puede ser futura" });
+        return res.status(400).json({ message: "La fecha de defunción no esta correctamente digitada" });
       }
 
       // Verificar si ya existe un registro de defunción para este número de documento
