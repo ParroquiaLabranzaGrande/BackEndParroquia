@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
   },
   birthdate: {
     type: Date,
-    required: false
+    required: true
   },
   documentNumber: {
     type: String,
@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
   typeDocument: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'DocumentType',
-    required: false,
+    required: true,
   },
   mail: {
     type: String,
