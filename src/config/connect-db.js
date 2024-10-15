@@ -11,4 +11,4 @@ mongoose.connect(URI)
   .then(() => console.log('Connect Success...'))
   .catch(err => console.log(err))
 
-module.exports = mongoose
+module.exports = mongoose 
