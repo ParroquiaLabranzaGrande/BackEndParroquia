@@ -8,7 +8,7 @@ const URI = "mongodb+srv://labranzagrandeparroquia:xpI174XEGbaaModa@labranzagran
 mongoose.set('strictQuery')
 
 mongoose.connect(URI)
-  .then(() => console.log('Connect Success...'))
+  .then(() => console.log('Connect Successfully...'))
   .catch(err => console.log(err))
 
 module.exports = mongoose
