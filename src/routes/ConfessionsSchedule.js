@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 
 const {
-    createMass,
+    createConfessionSchedule,
     removeTimeSlots,
     getTimeSlots
-} = require('../controllers/controll-massSchedule');
+} = require('../controllers/controll-confesionsSchedule');
 
-router.post('/', createMass);
+router.post('/', createConfessionSchedule);
 
 // Ruta para eliminar un horario disponible
 router.post('/remove-time-slots', removeTimeSlots);

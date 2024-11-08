@@ -1,17 +1,25 @@
 const express = require('express');
 const router = express.Router();
 
+
 const {
-    createMass,
-    removeTimeSlots,
-    getTimeSlots
-} = require('../controllers/controll-massSchedule');
+  createRequestConfession,
+  getPendingRequestConfessions,
+  getConfirmedRequestConfessions,
+  confirmRequestConfession,
+  deleteRequestConfession
+  } = require('../controllers/controll-confessions');
 
-router.post('/', createMass);
+// Crear una nueva solicitud de misa
+router.post('/', createRequestConfession);
 
-// Ruta para eliminar un horario disponible
-router.post('/remove-time-slots', removeTimeSlots);
 
-// Ruta para obtener los horarios
-router.get('/time-slots', getTimeSlots);  
+router.post('/confirm/:id', confirmRequestConfession);
+
+router.get('/earring', getPendingRequestConfessions);
+
+router.get('/confirmed', getConfirmedRequestConfessions);
+
+router.delete('/:id', deleteRequestConfession);
+
 module.exports = router;

@@ -27,6 +27,6 @@ const requestConfessionsSchema = new mongoose.Schema({
     }
 });
 
-const RequestMass = mongoose.model('RequestConfessions', requestConfessionsSchema);
+const requestConfessions = mongoose.model('RequestConfessions', requestConfessionsSchema);
 
-module.exports = RequestMass;
+module.exports = requestConfessions;

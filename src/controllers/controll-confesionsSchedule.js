@@ -1,7 +1,7 @@
-const MassSchedule = require('../models/massSchedule');
+const MassSchedule = require('../models/confessionsSchedule');
 
 module.exports = {
-    createMass : async (req, res) => {
+    createConfessionSchedule : async (req, res) => {
         try {
             const { date, timeSlots } = req.body;
             const selectedDate = new Date(date);

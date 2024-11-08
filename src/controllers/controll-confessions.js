@@ -1,11 +1,11 @@
-const RequestMass = require('../models/requestMass');
-const MassSchedule = require('../models/massSchedule');
+const RequestMass = require('../models/requestConfessions');
+const MassSchedule = require('../models/confessionsSchedule');
 const { verifyToken } = require('../helpers/gerate-token');
 const userModel = require('../models/user');
 
 module.exports = {
 
-    createRequestMass: async (req, res) => {
+    createRequestConfession: async (req, res) => {
         try {
             const { date, time, intention } = req.body;
             const token = req.headers.authorization?.split(' ').pop();
@@ -71,7 +71,7 @@ module.exports = {
         }
     },
 
-    getPendingRequestMasses: async (req, res) => {
+    getPendingRequestConfessions: async (req, res) => {
         try {
             const pendingMasses = await RequestMass.find({ status: 'Pendiente' }).populate('applicant');
             res.status(200).json(pendingMasses);
@@ -80,7 +80,7 @@ module.exports = {
         }
     },
 
-    getConfirmedRequestMasses: async (req, res) => {
+    getConfirmedRequestConfessions: async (req, res) => {
         try {
             const confirmedMasses = await RequestMass.find({ status: 'Confirmada' }).populate('applicant');
             res.status(200).json(confirmedMasses);
@@ -89,7 +89,7 @@ module.exports = {
         }
     },
 
-    confirmRequest: async (req, res) => {
+    confirmRequestConfession: async (req, res) => {
         try {
             const { id } = req.params; // Asumiendo que el ID se pasa como parámetro en la URL
 
@@ -112,7 +112,7 @@ module.exports = {
         }
     },
 
-    deleteRequest: async (req, res) => {
+    deleteRequestConfession: async (req, res) => {
         try {
             const { id } = req.params; // Asumiendo que el ID se pasa como parámetro en la URL
 
