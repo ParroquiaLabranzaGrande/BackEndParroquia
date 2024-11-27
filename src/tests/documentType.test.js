@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 app.use('/documentTypes', documentTypeRoutes);
 
-const MONGODB_URI_TEST = 'mongodb+srv://jhonatancamilo99:12345@proyecto.j13wixj.mongodb.net/API-TEST?retryWrites=true&w=majority&appName=Proyecto';
+const MONGODB_URI_TEST = 'mongodb+srv://labranzagrandeparroquia:xpI174XEGbaaModa@labranzagrande.aesdq.mongodb.net/?retryWrites=true&w=majority&appName=Labranzagrande';
 
 beforeAll(async () => {
   await mongoose.connect(MONGODB_URI_TEST);

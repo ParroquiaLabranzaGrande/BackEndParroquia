@@ -10,7 +10,7 @@ app.use('/mass-schedule', routes);
 
 // Conectar a una base de datos de prueba
 beforeAll(async () => {
-  await mongoose.connect('mongodb+srv://jhonatancamilo99:12345@proyecto.j13wixj.mongodb.net/API-TEST?retryWrites=true&w=majority&appName=Proyecto');
+  await mongoose.connect('mongodb+srv://labranzagrandeparroquia:xpI174XEGbaaModa@labranzagrande.aesdq.mongodb.net/?retryWrites=true&w=majority&appName=Labranzagrande');
 });
 
 // Limpiar la base de datos después de cada prueba
