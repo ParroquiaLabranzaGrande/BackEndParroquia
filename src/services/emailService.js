@@ -29,7 +29,7 @@ exports.sendResetCode = async (mail, resetCode) => {
           <p>Has solicitado un código para recuperar tu contraseña. Por favor, utiliza el siguiente código:</p>
           <div class="code">${resetCode}</div>
           <p>Si no has solicitado este código, por favor ignora este mensaje o contacta con nuestro soporte técnico.</p>
-          <p>Gracias,<br>Equipo de Parroquia de Santa Maria</p>
+          <p>Gracias,<br>Equipo de Parroquia de LabranzaGrande</p>
           <div class="footer">
             Este es un mensaje automático, por favor no responda a este correo.
           </div>
@@ -37,7 +37,7 @@ exports.sendResetCode = async (mail, resetCode) => {
       </body>
     </html>
   `;
-  sendSmtpEmail.sender = { name: "Parroquia de Santa Maria", email: process.env.FROM_EMAIL };
+  sendSmtpEmail.sender = { name: "Parroquia de Labranzagrande", email: process.env.FROM_EMAIL };
   sendSmtpEmail.to = [{ email: mail }];
   
   try {
@@ -68,10 +68,10 @@ exports.sendVerifyCode = async (mail, resetCode) => {
         <div class="container">
           <h1>Verificación de Correo</h1>
           <p>Estimado usuario,</p>
-          <p>Has solicitado un código para registrar una cuenta en la Parroquia Santa Maria. Por favor, utiliza el siguiente código:</p>
+          <p>Has solicitado un código para registrar una cuenta en la Parroquia Labranzagrande. Por favor, utiliza el siguiente código:</p>
           <div class="code">${resetCode}</div>
           <p>Si no has solicitado este código, por favor ignora este mensaje o contacta con nuestro soporte técnico.</p>
-          <p>Gracias,<br>Equipo de Parroquia de Santa Maria</p>
+          <p>Gracias,<br>Equipo de Parroquia de Labranzagrande</p>
           <div class="footer">
             Este es un mensaje automático, por favor no responda a este correo.
           </div>
@@ -79,7 +79,7 @@ exports.sendVerifyCode = async (mail, resetCode) => {
       </body>
     </html>
   `;
-  sendSmtpEmail.sender = { name: "Parroquia de Santa Maria", email: process.env.FROM_EMAIL };
+  sendSmtpEmail.sender = { name: "Parroquia de Labranzagrande", email: process.env.FROM_EMAIL };
   sendSmtpEmail.to = [{ email: mail }];
   
   try {
@@ -114,11 +114,11 @@ exports.sendDepartureDocument = async (requestData, departureData) => {
           <p>Estimado/a ${requestData.applicant.name},</p>
           <p>Adjunto encontrará su Partida de ${requestData.departureType} solicitada.</p>
           <p>Gracias por utilizar nuestros servicios.</p>
-          <p>Atentamente,<br>Parroquia Santa Maria</p>
+          <p>Atentamente,<br>Parroquia Labranzagrande</p>
         </body>
       </html>
     `;
-    sendSmtpEmail.sender = { name: "Parroquia de Santa Maria", email: process.env.FROM_EMAIL };
+    sendSmtpEmail.sender = { name: "Parroquia de Labranzagrande", email: process.env.FROM_EMAIL };
     sendSmtpEmail.to = [{ email: requestData.applicant.mail }];
 
     // Lee el contenido del archivo PDF y convierte a base64
