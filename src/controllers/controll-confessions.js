@@ -1,5 +1,5 @@
-const RequestMass = require('../models/requestConfessions');
-const MassSchedule = require('../models/confessionsSchedule');
+const requestConfessions = require('../models/requestConfessions');
+const confessionsSchedule = require('../models/confessionsSchedule');
 const { verifyToken } = require('../helpers/gerate-token');
 const userModel = require('../models/user');
 
@@ -29,7 +29,7 @@ module.exports = {
             }
     
             // Crear una nueva solicitud de misa
-            const newRequestMass = new RequestMass({
+            const newrequestConfessions = new requestConfessions({
                 date,
                 time,
                 intention,
@@ -37,7 +37,7 @@ module.exports = {
             });
     
             // Buscar la programación de misas para la fecha especificada
-            const schedule = await MassSchedule.findOne({ date });
+            const schedule = await confessionsSchedule.findOne({ date });
     
             if (!schedule) {
                 return res.status(404).json({ message: 'No se encontró una programación de misas para esta fecha' });
@@ -61,10 +61,10 @@ module.exports = {
             await schedule.save();
     
             // Guardar la nueva solicitud de misa
-            const savedRequestMass = await newRequestMass.save();
+            const savedrequestConfessions = await newrequestConfessions.save();
     
             // Enviar respuesta de éxito
-            res.status(201).json(savedRequestMass);
+            res.status(201).json(savedrequestConfessions);
         } catch (error) {
             console.error('Error al crear la solicitud de misa:', error);
             res.status(500).json({ message: 'Error al crear la solicitud de misa', error: error.message });
@@ -73,7 +73,7 @@ module.exports = {
 
     getPendingRequestConfessions: async (req, res) => {
         try {
-            const pendingMasses = await RequestMass.find({ status: 'Pendiente' }).populate('applicant');
+            const pendingMasses = await requestConfessions.find({ status: 'Pendiente' }).populate('applicant');
             res.status(200).json(pendingMasses);
         } catch (error) {
             res.status(500).json({ message: "Error fetching pending request masses", error: error.message });
@@ -82,7 +82,7 @@ module.exports = {
 
     getConfirmedRequestConfessions: async (req, res) => {
         try {
-            const confirmedMasses = await RequestMass.find({ status: 'Confirmada' }).populate('applicant');
+            const confirmedMasses = await requestConfessions.find({ status: 'Confirmada' }).populate('applicant');
             res.status(200).json(confirmedMasses);
         } catch (error) {
             res.status(500).json({ message: "Error fetching confirmed request masses", error: error.message });
@@ -93,7 +93,7 @@ module.exports = {
         try {
             const { id } = req.params; // Asumiendo que el ID se pasa como parámetro en la URL
 
-            const updatedRequest = await RequestMass.findByIdAndUpdate(
+            const updatedRequest = await requestConfessions.findByIdAndUpdate(
                 id,
                 { status: 'Confirmada' },
                 { new: true } // Esto hace que devuelva el documento actualizado
@@ -117,17 +117,17 @@ module.exports = {
             const { id } = req.params; // Asumiendo que el ID se pasa como parámetro en la URL
 
             // Primero, obtenemos la solicitud para conocer la fecha y hora
-            const request = await RequestMass.findById(id);
+            const request = await requestConfessions.findById(id);
 
             if (!request) {
                 return res.status(404).json({ mensaje: "Solicitud no encontrada" });
             }
 
             // Eliminamos la solicitud
-            await RequestMass.findByIdAndDelete(id);
+            await requestConfessions.findByIdAndDelete(id);
 
-            // Ahora, actualizamos el estado del horario en MassSchedule
-            const updatedSchedule = await MassSchedule.findOneAndUpdate(
+            // Ahora, actualizamos el estado del horario en confessionsSchedule
+            const updatedSchedule = await confessionsSchedule.findOneAndUpdate(
                 { 
                     date: request.date,
                     "timeSlots.time": request.time
