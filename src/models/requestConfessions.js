@@ -9,9 +9,8 @@ const requestConfessionsSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    Priest: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Users', 
+    intention: {
+        type: String,
         required: true
     },
 
