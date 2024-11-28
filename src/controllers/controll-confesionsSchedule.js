@@ -1,7 +1,7 @@
-const MassSchedule = require('../models/confessionsSchedule');
+const ConfessionSchedule = require('../models/confessionsSchedule'); // Cambiar el modelo usado
 
 module.exports = {
-    createConfessionSchedule : async (req, res) => {
+    createConfessionSchedule: async (req, res) => {
         try {
             const { date, timeSlots } = req.body;
             const selectedDate = new Date(date);
@@ -10,11 +10,11 @@ module.exports = {
     
             // Validar que la fecha no sea anterior a hoy
             if (selectedDate < today) {
-                return res.status(400).json({ message: 'No se pueden crear misas para fechas pasadas' });
+                return res.status(400).json({ message: 'No se pueden crear horarios para fechas pasadas' });
             }
     
-            // Buscar si ya existe un registro para esta fecha
-            let schedule = await MassSchedule.findOne({ date: selectedDate.toISOString().split('T')[0] });
+            // Buscar si ya existe un registro para esta fecha en confesiones
+            let schedule = await ConfessionSchedule.findOne({ date: selectedDate.toISOString().split('T')[0] });
     
             if (schedule) {
                 // Si existe, verificar si hay horarios duplicados
@@ -23,7 +23,6 @@ module.exports = {
                 for (const slot of timeSlots) {
                     if (existingTimes.has(slot.time)) {
                         return res.status(400).json({ message: `La hora ${slot.time} ya está reservada para esta fecha.` });
-                    
                     }
                 }
     
@@ -31,7 +30,7 @@ module.exports = {
                 schedule.timeSlots.push(...timeSlots);
             } else {
                 // Si no existe, crear un nuevo registro
-                schedule = new MassSchedule({
+                schedule = new ConfessionSchedule({
                     date: selectedDate,
                     timeSlots: timeSlots
                 });
@@ -50,7 +49,7 @@ module.exports = {
         const { date } = req.query;
     
         try {
-            const schedule = await MassSchedule.findOne({ date: new Date(date).toISOString().split('T')[0] });
+            const schedule = await ConfessionSchedule.findOne({ date: new Date(date).toISOString().split('T')[0] });
     
             if (!schedule) {
                 return res.status(404).json({ message: 'No se encontraron horarios para esta fecha' });
@@ -69,7 +68,7 @@ module.exports = {
         const { date, timeSlots } = req.body;
       
         try {
-            const schedule = await MassSchedule.findOne({ date: new Date(date).toISOString().split('T')[0] });
+            const schedule = await ConfessionSchedule.findOne({ date: new Date(date).toISOString().split('T')[0] });
       
             if (!schedule) {
                 return res.status(404).json({ message: 'Schedule not found' });
