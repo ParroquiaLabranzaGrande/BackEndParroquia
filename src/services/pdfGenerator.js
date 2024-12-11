@@ -72,7 +72,7 @@ function generatePDF(departureType, departureData, filePath) {
 }
 
 function generateBaptismContent(doc, data) {
-  doc.text(`En el municipio de Labranzagrande (Boyacá), a los ${data.baptismDate.getDate()} días del mes de ${getMonthName(data.baptismDate.getMonth())} del año ${data.baptismDate.getFullYear()}. Yo, el infrascrito Victor Cardenas, Párroco de esta Parroquia,`, {
+  doc.text(`En el municipio de Labranzagrande (Boyacá), a los ${data.baptismDate.getDate()} días del mes de ${getMonthName(data.baptismDate.getMonth())} del año ${data.baptismDate.getFullYear()}. Yo, el infrascrito Wilson Tapias, Párroco de esta Parroquia,`, {
     lineGap: 5
   });
 
