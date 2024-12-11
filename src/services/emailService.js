@@ -26,7 +26,7 @@ exports.sendResetCode = async (mail, resetCode) => {
         <div class="container">
           <h1>Recuperación de Contraseña</h1>
           <p>Estimado usuario,</p>
-          <p>Has solicitado un código para recuperar tu contraseña. Por favor,JAJAJA utiliza el siguiente código:</p>
+          <p>Has solicitado un código para recuperar tu contraseña. Por favor, utiliza el siguiente código:</p>
           <div class="code">${resetCode}</div>
           <p>Si no has solicitado este código, por favor ignora este mensaje o contacta con nuestro soporte técnico.</p>
           <p>Gracias,<br>Equipo de Parroquia de LabranzaGrande</p>
